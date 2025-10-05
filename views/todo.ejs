@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Todo List</title>
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #1e1e2f;
+        color: #e0e0e0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+        margin: 0;
+        min-height: 100vh;
+    }
+
+    h1 {
+        color: #00ffd5;
+        margin-bottom: 25px;
+        letter-spacing: 1px;
+        font-size: 2.2rem;
+        text-shadow: 0 0 10px #00ffd5;
+    }
+
+    form {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    input[type="text"], input[type="datetime-local"] {
+        padding: 12px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        outline: none;
+        background-color: #2a2a40;
+        color: #e0e0e0;
+        box-shadow: inset 0 0 5px rgba(0,255,213,0.3);
+        transition: box-shadow 0.3s;
+    }
+
+    input[type="text"]::placeholder {
+        color: #999;
+    }
+
+    input[type="text"]:focus, input[type="datetime-local"]:focus {
+        box-shadow: inset 0 0 10px #00ffd5;
+    }
+
+    button[type="submit"] {
+        padding: 12px 20px;
+        background-color: #00ffd5;
+        color: #1e1e2f;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #00e0c0;
+        transform: scale(1.05);
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        width: 100%;
+        max-width: 500px;
+    }
+
+    li {
+        background-color: #2a2a40;
+        padding: 12px 15px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+    li:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+    }
+
+    li span {
+        flex-grow: 1;
+        margin-left: 12px;
+        font-size: 16px;
+        transition: color 0.3s;
+    }
+
+    .task-time {
+        font-size: 14px;
+        color: #aaa;
+        margin-left: 15px;
+    }
+
+    li button {
+        background-color: #ff4d6d;
+        border: none;
+        color: white;
+        padding: 6px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-left: 10px;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    li button:hover {
+        background-color: #ff1a3c;
+        transform: scale(1.05);
+    }
+
+    li a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .done {
+        cursor: pointer;
+        accent-color: #00ffd5;
+        transform: scale(1.2);
+        transition: transform 0.2s;
+    }
+
+    .done:checked + span {
+        text-decoration: line-through;
+        color: #777;
+    }
+</style>
+</head>
+<body>
+<h1>Todo List</h1>
+
+<form action="/add-task" method="post">
+    <input type="text" name="task" placeholder="Enter your task" required>
+    <input type="datetime-local" name="datetime" required>
+    <button type="submit">Add</button>
+</form>
+
+<ul>
+   <% task.forEach((t, index) => { %>
+        <li>
+            <input type="checkbox" class="done">
+            <span><%= t.task %></span>
+            <span class="task-time">🕒 <%= new Date(t.datetime).toLocaleString() %></span>
+            <button><a href="/delete-task/<%= t._id %>">Delete</a></button>
+        </li>
+   <% }) %>
+</ul>
+
+<script>
+    const checkboxes = document.querySelectorAll('.done');
+
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const taskText = this.nextElementSibling;
+            if (this.checked) {
+                taskText.style.textDecoration = 'line-through';
+                taskText.style.color = '#777';
+            } else {
+                taskText.style.textDecoration = 'none';
+                taskText.style.color = '#e0e0e0';
+            }
+        });
+    });
+</script>
+</body>
+</html>
