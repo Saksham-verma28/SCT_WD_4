@@ -2,7 +2,16 @@
 
 ## Project Structure
 
-`project/ ├── app.js # Main Express application file ├── util/ └── ConnectMongo.js # MongoDB connection setup └── views/ └── todo.ejs # EJS template for rendering the to-do page`
+`
+## Project Structure
+
+project/
+├── app.js                 # Main Express application file
+├── util/
+│   └── ConnectMongo.js    # MongoDB connection setup
+└── views/
+    └── todo.ejs           # EJS template for rendering the to-do page
+`
 
 
 ## Install dependencies
