@@ -2,9 +2,9 @@
 
 ## Project Structure
 
-`
-## Project Structure
 
+## Project Structure
+`
 project/
 ├── app.js                 # Main Express application file
 ├── util/
