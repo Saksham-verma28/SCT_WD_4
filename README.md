@@ -1,7 +1,4 @@
-# SCT_WD_4
-
-## Project Structure
-
+# SCT_WD_4: TO DO WEB APP
 
 ## Project Structure
 ```
