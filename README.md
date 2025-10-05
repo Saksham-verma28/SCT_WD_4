@@ -22,11 +22,6 @@ npm install express mongodb ejs nodemon
 
 npx nodemon app.js
 
-## 
-This will render properly on GitHub:  
-- Folder structure in its own code block.  
-- Bash commands in their own code block.  
-
 
 
 
